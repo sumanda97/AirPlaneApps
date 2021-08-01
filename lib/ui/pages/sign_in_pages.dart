@@ -5,18 +5,18 @@ import 'package:airplane/ui/widgets/costumTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPages extends StatefulWidget {
+class SignInPages extends StatefulWidget {
   @override
-  _SignUpPagesState createState() => _SignUpPagesState();
+  _SignInPagesState createState() => _SignInPagesState();
 }
 
-class _SignUpPagesState extends State<SignUpPages> {
+class _SignInPagesState extends State<SignInPages> {
 // Title
   Widget title() {
     return Container(
       margin: EdgeInsets.only(top: 150),
       child: Text(
-        "Join us and get\nyour next journey",
+        "Welcome Back\nLet's start your journey",
         style: subtitleFontStyle1.copyWith(fontWeight: semibold, fontSize: 24),
       ),
     );
@@ -25,18 +25,13 @@ class _SignUpPagesState extends State<SignUpPages> {
 // ALL INPUT SECTION
   Widget inputSection() {
     return Container(
-      margin: EdgeInsets.only(top: 30),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+      margin: EdgeInsets.only(top: 50),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 70),
       decoration: BoxDecoration(
           color: kBackgroundWhiteColor,
           borderRadius: BorderRadius.circular(18)),
       child: Column(
         children: [
-          CostumTextFormField(
-            title: "Full Name",
-            hintText: "Type Your Name",
-            controller: nameController,
-          ),
           CostumTextFormField(
             title: "Email Address",
             hintText: "Type Your Email",
@@ -58,7 +53,7 @@ class _SignUpPagesState extends State<SignUpPages> {
       listener: (context, state) {
         if (state is AuthSuccess) {
           Navigator.pushNamedAndRemoveUntil(
-              context, '/bonus', (route) => false);
+              context, '/main-pages', (route) => false);
         } else if (state is AuthFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -78,23 +73,23 @@ class _SignUpPagesState extends State<SignUpPages> {
         return CostumButton(
             width: double.infinity,
             margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-            title: "Get Started",
+            title: "Sign In",
             onPressed: () {
               print(passwordController.text);
-              context.read<AuthCubit>().signUp(
-                  email: emailController.text,
-                  password: passwordController.text,
-                  name: nameController.text);
+              context.read<AuthCubit>().signIn(
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
             });
       },
     );
   }
 
-  // Sign In
-  Widget signButton() {
+// Term Button
+  Widget termButton() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/sign-in');
+        Navigator.pushNamed(context, '/sign-up');
       },
       child: Container(
         alignment: Alignment.center,
@@ -103,7 +98,7 @@ class _SignUpPagesState extends State<SignUpPages> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Already Have Account? ",
+              "Don't Have Account? ",
               style: subtitleFontStyle3.copyWith(
                   color: kgreyColor,
                   fontSize: 17,
@@ -111,7 +106,7 @@ class _SignUpPagesState extends State<SignUpPages> {
                   decorationColor: kblueColor),
             ),
             Text(
-              "Sign In",
+              "Sign Up",
               style: subtitleFontStyle3.copyWith(
                   fontSize: 17,
                   color: kblueColor,
@@ -123,21 +118,7 @@ class _SignUpPagesState extends State<SignUpPages> {
     );
   }
 
-// Term Button
-  Widget termButton() {
-    return Container(
-      alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 50, bottom: 70),
-      child: Text(
-        "Term  and conditions",
-        style: subtitleFontStyle3.copyWith(
-            color: kgreyColor, decoration: TextDecoration.underline),
-      ),
-    );
-  }
-
   // Text Editing Controller
-  TextEditingController nameController = TextEditingController(text: "");
   TextEditingController emailController = TextEditingController(text: "");
   TextEditingController passwordController = TextEditingController(text: "");
   @override
@@ -151,7 +132,7 @@ class _SignUpPagesState extends State<SignUpPages> {
             title(),
             inputSection(),
             submitButton(),
-            signButton(),
+            termButton(),
           ],
         ),
       ),

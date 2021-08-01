@@ -1,7 +1,9 @@
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:airplane/shared/theme.dart';
 import 'package:airplane/ui/widgets/destinationCard.dart';
 import 'package:airplane/ui/widgets/destinationTile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePages extends StatefulWidget {
   @override
@@ -10,47 +12,55 @@ class HomePages extends StatefulWidget {
 
 class _HomePagesState extends State<HomePages> {
   Widget header() {
-    return Container(
-      margin:
-          EdgeInsets.only(top: 30, left: defaultMargin, right: defaultMargin),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        if (state is AuthSuccess) {
+          return Container(
+            margin: EdgeInsets.only(
+                top: 30, left: defaultMargin, right: defaultMargin),
+            child: Row(
               children: [
-                Text(
-                  "How Are You,",
-                  style: subtitleFontStyle3.copyWith(
-                      fontSize: 24, fontWeight: semibold),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "How Are You,",
+                        style: subtitleFontStyle3.copyWith(
+                            fontSize: 24, fontWeight: semibold),
+                      ),
+                      Text(
+                        "${state.user.name}",
+                        style: subtitleFontStyle3.copyWith(
+                            fontSize: 24, fontWeight: semibold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        "Where to fly today",
+                        style: subtitleFontStyle2.copyWith(
+                            fontSize: 16, fontWeight: light),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  "Sumanda",
-                  style: subtitleFontStyle3.copyWith(
-                      fontSize: 24, fontWeight: semibold),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  "Where to fly today",
-                  style: subtitleFontStyle2.copyWith(
-                      fontSize: 16, fontWeight: light),
-                ),
+                Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage("assets/image_profile.png"))),
+                )
               ],
             ),
-          ),
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage("assets/image_profile.png"))),
-          )
-        ],
-      ),
+          );
+        } else {
+          return SizedBox();
+        }
+      },
     );
   }
 

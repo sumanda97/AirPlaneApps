@@ -5,9 +5,12 @@ class CostumTextFormField extends StatelessWidget {
   final String title;
   final String hintText;
   final bool obsecureText;
-
+  final TextEditingController controller;
   CostumTextFormField(
-      {required this.title, required this.hintText, this.obsecureText = false});
+      {required this.title,
+      required this.hintText,
+      this.obsecureText = false,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class CostumTextFormField extends StatelessWidget {
           TextFormField(
             cursorColor: kblackColor,
             obscureText: obsecureText,
+            controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
               border: OutlineInputBorder(

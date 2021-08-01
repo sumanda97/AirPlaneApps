@@ -192,7 +192,7 @@ class CheckoutPage extends StatelessWidget {
         margin: EdgeInsets.only(top: 30),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
         child: Column(
@@ -212,7 +212,7 @@ class CheckoutPage extends StatelessWidget {
                     width: 100,
                     margin: EdgeInsets.only(right: 16),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                             image: AssetImage("assets/image_card.png"))),
                     child: Center(

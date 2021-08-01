@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "856213113506",
+    "project_id": "airplane-34d71",
+    "storage_bucket": "airplane-34d71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856213113506:android:2fb0f38d5c27dc310fe5fb",
+        "android_client_info": {
+          "package_name": "com.sumanda.airplane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856213113506-tg4k9r217sk7jlc36amp20d5uelukj2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsrIlIlvMIH-wrY6T3BFVDljciePdotEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856213113506-tg4k9r217sk7jlc36amp20d5uelukj2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
