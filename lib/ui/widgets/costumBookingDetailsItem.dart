@@ -8,7 +8,7 @@ class BookingDetailsItem extends StatelessWidget {
   final Color color;
 
   BookingDetailsItem(
-      {required this.imageUrl,
+      {this.imageUrl = "assets/icon_check.png",
       required this.subtitle,
       required this.title,
       this.color = kblackColor});

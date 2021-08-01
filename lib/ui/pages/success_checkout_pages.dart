@@ -1,7 +1,9 @@
+import 'package:airplane/cubit/page_cubit.dart';
 import 'package:airplane/shared/theme.dart';
 
 import 'package:airplane/ui/widgets/costumButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SuccessCheckOutPage extends StatelessWidget {
   @override
@@ -37,6 +39,7 @@ class SuccessCheckOutPage extends StatelessWidget {
           CostumButton(
             title: "My Bookings",
             onPressed: () {
+              context.read<PageCubit>().setPage(1);
               Navigator.pushNamedAndRemoveUntil(
                   context, '/main-pages', (route) => false);
             },
